@@ -1,0 +1,39 @@
+{
+    "name": "hschulz/php-app-kernel",
+    "description": "A basic CLI app kernel.",
+    "type": "library",
+    "keywords": ["kernel", "bundle", "app", "php", "events", "cli"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Hauke Schulz",
+            "email": "hauke27@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.0",
+        "hschulz/configuration-manager": "*",
+        "hschulz/event": "*",
+        "hschulz/php-http": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1.4",
+        "mikey179/vfsStream": "^1.6.5"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "hschulz\\Kernel\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "hschulz\\Kernel\\Tests\\": "Tests"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "apcu-autoloader": true
+    }
+}
