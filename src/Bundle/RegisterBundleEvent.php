@@ -3,13 +3,12 @@
 namespace hschulz\Kernel\Bundle;
 
 use \hschulz\Event\AbstractEvent;
-use \hschulz\Kernel\Bundle\Bundle;
 
 /**
  *
  */
-class RegisterBundleEvent extends AbstractEvent {
-
+class RegisterBundleEvent extends AbstractEvent
+{
     /**
      * Identifier for the bundle pre-register event.
      * @var string
@@ -33,7 +32,8 @@ class RegisterBundleEvent extends AbstractEvent {
      *
      * @param Bundle $bundle The bundle object
      */
-    public function __construct(Bundle $bundle) {
+    public function __construct(Bundle $bundle)
+    {
         parent::__construct();
         $this->bundle = $bundle;
     }
@@ -44,7 +44,8 @@ class RegisterBundleEvent extends AbstractEvent {
      * @param Bundle $bundle The bundle instance
      * @return void
      */
-    public function setBundle(Bundle $bundle): void {
+    public function setBundle(Bundle $bundle): void
+    {
         $this->bundle = $bundle;
     }
 
@@ -53,7 +54,8 @@ class RegisterBundleEvent extends AbstractEvent {
      *
      * @return Bundle The bundle instance
      */
-    public function getBundle(): Bundle {
+    public function getBundle(): Bundle
+    {
         return $this->bundle;
     }
 }

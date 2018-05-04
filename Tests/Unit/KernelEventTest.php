@@ -2,15 +2,15 @@
 
 namespace hschulz\Kernel\Tests\Unit;
 
-use \PHPUnit\Framework\TestCase;
-use \hschulz\Kernel\KernelEvent;
 use \hschulz\Kernel\CliKernel;
+use \hschulz\Kernel\KernelEvent;
 use \org\bovigo\vfs\vfsStream;
+use \PHPUnit\Framework\TestCase;
 
-final class KernelEventTest extends TestCase {
-
-    public function testCanBeCreatedWithKernel() {
-
+final class KernelEventTest extends TestCase
+{
+    public function testCanBeCreatedWithKernel()
+    {
         vfsStream::setup('integration');
 
         $file = vfsStream::url('integration/config.json');
@@ -31,8 +31,8 @@ final class KernelEventTest extends TestCase {
         $this->assertEquals($kernel, $event->getKernel());
     }
 
-    public function testCanKernelBeSet() {
-
+    public function testCanKernelBeSet()
+    {
         vfsStream::setup('integration');
 
         $file = vfsStream::url('integration/config.json');

@@ -2,13 +2,14 @@
 
 namespace hschulz\kernel;
 
-use \hschulz\Kernel\Bundle\Bundle;
 use \hschulz\Event\EventAware;
+use \hschulz\Kernel\Bundle\Bundle;
 
 /**
  *
  */
-interface Kernel extends EventAware {
+interface Kernel extends EventAware
+{
 
     /**
      * Implementing classes should put all logic here that is required

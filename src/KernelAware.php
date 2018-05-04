@@ -2,12 +2,11 @@
 
 namespace hschulz\Kernel;
 
-use \hschulz\Kernel\Kernel;
-
 /**
  *
  */
-interface KernelAware {
+interface KernelAware
+{
 
     /**
      * Returns the kernel instance.
