@@ -8,7 +8,8 @@ use \hschulz\Event\EventAware;
 /**
  *
  */
-interface Bundle extends EventAware, Configurable {
+interface Bundle extends EventAware, Configurable
+{
 
     /**
      * Implementing classes should put all logic in this method that is required

@@ -2,14 +2,14 @@
 
 namespace hschulz\Kernel\Bundle;
 
-use \hschulz\Kernel\Bundle\Bundle;
 use \hschulz\Config\ConfigurationManager;
 use \hschulz\Event\EventManager;
 
 /**
  *
  */
-abstract class AbstractBundle implements Bundle {
+abstract class AbstractBundle implements Bundle
+{
 
     /**
      * The configuration manager.
@@ -34,7 +34,8 @@ abstract class AbstractBundle implements Bundle {
      *
      * @param string $name An optional name for this bundle
      */
-    public function __construct(string $name = '') {
+    public function __construct(string $name = '')
+    {
         $this->eventManager = null;
         $this->config       = null;
         $this->name         = $name;
@@ -46,7 +47,8 @@ abstract class AbstractBundle implements Bundle {
      * @param EventManager $eventManager The event manager object
      * @return void
      */
-    public function setEventManager(EventManager $eventManager): void {
+    public function setEventManager(EventManager $eventManager): void
+    {
         $this->eventManager = $eventManager;
     }
 
@@ -55,7 +57,8 @@ abstract class AbstractBundle implements Bundle {
      *
      * @return EventManager|null The event manager object
      */
-    public function getEventManager(): ?EventManager {
+    public function getEventManager(): ?EventManager
+    {
         return $this->eventManager;
     }
 
@@ -65,7 +68,8 @@ abstract class AbstractBundle implements Bundle {
      * @param ConfigurationManager $config The configuration manager object
      * @return void
      */
-    public function setConfiguationHandler(ConfigurationManager $config): void {
+    public function setConfiguationHandler(ConfigurationManager $config): void
+    {
         $this->config = $config;
     }
 
@@ -74,7 +78,8 @@ abstract class AbstractBundle implements Bundle {
      *
      * @return ConfigurationManager|null The configuration manager object
      */
-    public function getConfigurationHandler(): ?ConfigurationManager {
+    public function getConfigurationHandler(): ?ConfigurationManager
+    {
         return $this->config;
     }
 
@@ -83,7 +88,8 @@ abstract class AbstractBundle implements Bundle {
      *
      * @return string The bundle name
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -93,7 +99,8 @@ abstract class AbstractBundle implements Bundle {
      * @param string $name The bundle name
      * @return void
      */
-    public function setName(string $name): void {
+    public function setName(string $name): void
+    {
         $this->name = $name;
     }
 

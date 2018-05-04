@@ -2,25 +2,24 @@
 
 namespace hschulz\Kernel;
 
-use \hschulz\Kernel\Bundle\Bundle;
 use \hschulz\Config\Configurable;
 use \hschulz\Config\ConfigurationManager;
 use \hschulz\Event\EventManager;
 use \hschulz\Event\Manager;
-use \hschulz\Kernel\Kernel;
+use \hschulz\Kernel\Bundle\Bundle;
 use \hschulz\Kernel\Bundle\RegisterBundleEvent;
 use \InvalidArgumentException;
 use function \count;
-use function \microtime;
 use function \date_default_timezone_set;
-use function \ini_set;
 use function \error_reporting;
+use function \ini_set;
+use function \microtime;
 
 /**
  * Description of Kernel
  */
-abstract class AbstractKernel implements Configurable, Kernel {
-
+abstract class AbstractKernel implements Configurable, Kernel
+{
     /**
      * Identifier for a development environment.
      * @var string
@@ -80,8 +79,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @param ConfigurationManager $config The configuration manager
      */
-    public function __construct(ConfigurationManager $config) {
-
+    public function __construct(ConfigurationManager $config)
+    {
         $this->environment  = $config->getEnvironment();
         $this->isDebug      = false;
         $this->startTime    = microtime(true);
@@ -97,7 +96,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return ConfigurationManager The configuration manager
      */
-    public function getConfigurationHandler(): ConfigurationManager {
+    public function getConfigurationHandler(): ConfigurationManager
+    {
         return $this->config;
     }
 
@@ -106,7 +106,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @param ConfigurationManager $manager The configuration manager
      */
-    public function setConfiguationHandler(ConfigurationManager $manager): void {
+    public function setConfiguationHandler(ConfigurationManager $manager): void
+    {
 
         /* Assign the configuration manager */
         $this->config = $manager;
@@ -136,7 +137,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return bool True if the debug mode is enabled
      */
-    public function isDebug(): bool {
+    public function isDebug(): bool
+    {
         return $this->isDebug;
     }
 
@@ -145,7 +147,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @param bool $isDebug True enables the debug mode
      */
-    public function setDebug(bool $isDebug): void {
+    public function setDebug(bool $isDebug): void
+    {
         $this->isDebug = $isDebug;
     }
 
@@ -153,10 +156,9 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return bool
      */
-    public function boot(): bool {
-
+    public function boot(): bool
+    {
         if (!$this->isBooted) {
-
             $preEvent = new KernelEvent($this);
             $preEvent->setName(KernelEvent::EVENT_PRE_BOOT);
 
@@ -179,7 +181,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return string
      */
-    public function getEnvironment(): string {
+    public function getEnvironment(): string
+    {
         return $this->environment;
     }
 
@@ -187,7 +190,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return float
      */
-    public function getStartTime(): float {
+    public function getStartTime(): float
+    {
         return $this->startTime;
     }
 
@@ -195,8 +199,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return bool
      */
-    public function shutdown(): bool {
-
+    public function shutdown(): bool
+    {
         $preEvent = new KernelEvent($this);
         $preEvent->setName(KernelEvent::EVENT_PRE_SHUTDOWN);
 
@@ -223,7 +227,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return array The array of bundles
      */
-    public function getBundles(): array {
+    public function getBundles(): array
+    {
         return $this->bundles;
     }
 
@@ -232,8 +237,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      * @param Bundle $bundle
      * @return void
      */
-    public function registerBundle(Bundle $bundle): void {
-
+    public function registerBundle(Bundle $bundle): void
+    {
         $preEvent = new RegisterBundleEvent($bundle);
         $preEvent->setName(RegisterBundleEvent::EVENT_PRE_REGISTER);
 
@@ -253,8 +258,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      * @throws InvalidArgumentException
      * @return void
      */
-    public function registerBundles(array $bundles): void {
-
+    public function registerBundles(array $bundles): void
+    {
         foreach ($bundles as $bundle) {
             if ($bundle instanceof Bundle) {
                 $this->registerBundle($bundle);
@@ -268,8 +273,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return void
      */
-    protected function initializeBundles(): void {
-
+    protected function initializeBundles(): void
+    {
         for ($i = 0, $c = count($this->bundles); $i < $c; $i++) {
             $this->bundles[$i]->setEventManager($this->eventManager);
             $this->bundles[$i]->setConfiguationHandler($this->config);
@@ -282,7 +287,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      *
      * @return EventManager The event manager
      */
-    public function getEventManager(): EventManager {
+    public function getEventManager(): EventManager
+    {
         return $this->eventManager;
     }
 
@@ -292,7 +298,8 @@ abstract class AbstractKernel implements Configurable, Kernel {
      * @param EventManager $manager The event manager object
      * @return void
      */
-    public function setEventManager(EventManager $manager): void {
+    public function setEventManager(EventManager $manager): void
+    {
         $this->eventManager = $manager;
     }
 }

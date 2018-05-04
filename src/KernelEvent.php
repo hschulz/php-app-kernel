@@ -3,14 +3,12 @@
 namespace hschulz\Kernel;
 
 use \hschulz\Event\AbstractEvent;
-use \hschulz\Kernel\Kernel;
-use \hschulz\Kernel\KernelAware;
 
 /**
  *
  */
-class KernelEvent extends AbstractEvent implements KernelAware {
-
+class KernelEvent extends AbstractEvent implements KernelAware
+{
     /**
      * The identifier string for the kernel pre-boot event.
      * @var string
@@ -46,7 +44,8 @@ class KernelEvent extends AbstractEvent implements KernelAware {
      *
      * @param Kernel $kernel The kernel object
      */
-    function __construct(Kernel $kernel) {
+    public function __construct(Kernel $kernel)
+    {
         parent::__construct();
         $this->kernel = $kernel;
     }
@@ -56,7 +55,8 @@ class KernelEvent extends AbstractEvent implements KernelAware {
      *
      * @return Kernel The kernel object
      */
-    public function getKernel(): Kernel {
+    public function getKernel(): Kernel
+    {
         return $this->kernel;
     }
 
@@ -66,7 +66,8 @@ class KernelEvent extends AbstractEvent implements KernelAware {
      * @param Kernel $kernel The kernel object
      * @return void
      */
-    public function setKernel(Kernel $kernel): void {
+    public function setKernel(Kernel $kernel): void
+    {
         $this->kernel = $kernel;
     }
 }

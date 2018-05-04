@@ -2,19 +2,19 @@
 
 namespace hschulz\Kernel\Tests\Unit;
 
-use \PHPUnit\Framework\TestCase;
 use \hschulz\Kernel\Bundle\AbstractBundle;
 use \hschulz\Kernel\CliKernel;
 use \org\bovigo\vfs\vfsStream;
+use \PHPUnit\Framework\TestCase;
 
-final class CliKernelTest extends TestCase {
-
+final class CliKernelTest extends TestCase
+{
     protected $config = null;
 
     protected $kernel = null;
 
-    protected function setUp() {
-
+    protected function setUp()
+    {
         vfsStream::setup('integration');
 
         $file = vfsStream::url('integration/config.json');
@@ -31,12 +31,13 @@ final class CliKernelTest extends TestCase {
         $this->kernel = new CliKernel($this->config);
     }
 
-    protected function tearDown() {
+    protected function tearDown()
+    {
         $this->config = null;
     }
 
-    public function testCanRegisterBundle() {
-
+    public function testCanRegisterBundle()
+    {
         $bundle = $this->getMockForAbstractClass(AbstractBundle::class);
 
         $this->kernel->registerBundle($bundle);
@@ -45,7 +46,8 @@ final class CliKernelTest extends TestCase {
         $this->assertEquals($bundle, $this->kernel->getBundles()[0]);
     }
 
-    public function testCanRegisterBundles() {
+    public function testCanRegisterBundles()
+    {
         $this->kernel->registerBundles([
             $this->getMockForAbstractClass(AbstractBundle::class),
             $this->getMockForAbstractClass(AbstractBundle::class),
@@ -55,13 +57,14 @@ final class CliKernelTest extends TestCase {
         $this->assertEquals(3, count($this->kernel->getBundles()));
     }
 
-    public function testCanNotRegisterAnyObjectAsBundle() {
+    public function testCanNotRegisterAnyObjectAsBundle()
+    {
         $this->expectException(\InvalidArgumentException::class);
         $this->kernel->registerBundles([new \stdClass()]);
     }
 
-    public function testCanSetDebug() {
-
+    public function testCanSetDebug()
+    {
         $this->assertTrue($this->kernel->isDebug());
 
         $this->kernel->setDebug(false);
@@ -69,16 +72,18 @@ final class CliKernelTest extends TestCase {
         $this->assertFalse($this->kernel->isDebug());
     }
 
-    public function testHasConfig() {
+    public function testHasConfig()
+    {
         $this->assertEquals($this->config, $this->kernel->getConfigurationHandler());
     }
 
-    public function testHasEventManager() {
+    public function testHasEventManager()
+    {
         $this->assertInstanceOf(\hschulz\Event\EventManager::class, $this->kernel->getEventManager());
     }
 
-    public function testCanSetEventManager() {
-
+    public function testCanSetEventManager()
+    {
         $em = new \hschulz\Event\Manager();
 
         $this->kernel->setEventManager($em);
@@ -86,29 +91,35 @@ final class CliKernelTest extends TestCase {
         $this->assertEquals($em, $this->kernel->getEventManager());
     }
 
-    public function testCanBoot() {
+    public function testCanBoot()
+    {
         $this->assertTrue($this->kernel->boot());
     }
 
-    public function testCanBootWithBundles() {
+    public function testCanBootWithBundles()
+    {
         $this->kernel->registerBundle($this->getMockForAbstractClass(AbstractBundle::class));
         $this->assertTrue($this->kernel->boot());
     }
 
-    public function testCanShutdown() {
+    public function testCanShutdown()
+    {
         $this->assertTrue($this->kernel->shutdown());
     }
 
-    public function testCanShutdownWithBundles() {
+    public function testCanShutdownWithBundles()
+    {
         $this->kernel->registerBundle($this->getMockForAbstractClass(AbstractBundle::class));
         $this->assertTrue($this->kernel->shutdown());
     }
 
-    public function testCanGetEnvironment() {
+    public function testCanGetEnvironment()
+    {
         $this->assertEquals('integration', $this->kernel->getEnvironment());
     }
 
-    public function testCanGetStartTime() {
+    public function testCanGetStartTime()
+    {
         $this->assertLessThan(microtime(true), $this->kernel->getStartTime());
     }
 }
