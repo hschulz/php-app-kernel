@@ -101,12 +101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hschulz/event.git",
-                "reference": "f549d263036e065bbe022332d04aeae9077c643f"
+                "reference": "05b9cb802a835ddb6736ee31e2b306079a348447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hschulz/event/zipball/f549d263036e065bbe022332d04aeae9077c643f",
-                "reference": "f549d263036e065bbe022332d04aeae9077c643f",
+                "url": "https://api.github.com/repos/hschulz/event/zipball/05b9cb802a835ddb6736ee31e2b306079a348447",
+                "reference": "05b9cb802a835ddb6736ee31e2b306079a348447",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +140,7 @@
                 "manager",
                 "php"
             ],
-            "time": "2018-05-04T19:22:24+00:00"
+            "time": "2018-05-04T19:27:52+00:00"
         },
         {
             "name": "hschulz/io-streams",
@@ -188,12 +188,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hschulz/php-http.git",
-                "reference": "3edde98674a094fcefbdf671f5bef88db55d65d5"
+                "reference": "12ae2e60eadd5088700954aa088d72a9725d502c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hschulz/php-http/zipball/3edde98674a094fcefbdf671f5bef88db55d65d5",
-                "reference": "3edde98674a094fcefbdf671f5bef88db55d65d5",
+                "url": "https://api.github.com/repos/hschulz/php-http/zipball/12ae2e60eadd5088700954aa088d72a9725d502c",
+                "reference": "12ae2e60eadd5088700954aa088d72a9725d502c",
                 "shasum": ""
             },
             "require": {
@@ -227,7 +227,7 @@
                 "request",
                 "response"
             ],
-            "time": "2018-04-28T18:57:28+00:00"
+            "time": "2018-05-07T22:22:04+00:00"
         },
         {
             "name": "hschulz/php-network-stuff",
@@ -332,16 +332,16 @@
         },
         {
             "name": "mikey179/vfsStream",
-            "version": "v1.6.5",
+            "version": "v1.6.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mikey179/vfsStream.git",
-                "reference": "d5fec95f541d4d71c4823bb5e30cf9b9e5b96145"
+                "url": "https://github.com/bovigo/vfsStream.git",
+                "reference": "095238a0711c974ae5b4ebf4c4534a23f3f6c99d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikey179/vfsStream/zipball/d5fec95f541d4d71c4823bb5e30cf9b9e5b96145",
-                "reference": "d5fec95f541d4d71c4823bb5e30cf9b9e5b96145",
+                "url": "https://api.github.com/repos/bovigo/vfsStream/zipball/095238a0711c974ae5b4ebf4c4534a23f3f6c99d",
+                "reference": "095238a0711c974ae5b4ebf4c4534a23f3f6c99d",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +374,7 @@
             ],
             "description": "Virtual file system to mock the real file system in unit tests.",
             "homepage": "http://vfs.bovigo.org/",
-            "time": "2017-08-01T08:02:14+00:00"
+            "time": "2019-04-08T13:54:32+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1121,6 +1121,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-04-11T04:50:36+00:00"
         },
         {
