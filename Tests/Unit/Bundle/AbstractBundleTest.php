@@ -1,16 +1,19 @@
 <?php
 
-namespace hschulz\Kernel\Tests\Unit\Bundle;
+declare(strict_types=1);
 
-use \hschulz\Config\JSONConfigurationManager;
-use \hschulz\Kernel\Bundle\AbstractBundle;
-use \org\bovigo\vfs\vfsStream;
-use \PHPUnit\Framework\TestCase;
-use function \file_put_contents;
+namespace Hschulz\Kernel\Tests\Unit\Bundle;
+
+use Hschulz\Config\JSONConfigurationManager;
+use Hschulz\Event\Manager;
+use Hschulz\Kernel\Bundle\AbstractBundle;
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
+use function file_put_contents;
 
 final class AbstractBundleTest extends TestCase
 {
-    public function testCanSetName()
+    public function testCanSetName(): void
     {
         $bundle = $this->getMockForAbstractClass(AbstractBundle::class);
 
@@ -19,7 +22,7 @@ final class AbstractBundleTest extends TestCase
         $this->assertEquals('Integration', $bundle->getName());
     }
 
-    public function testCanSetConfig()
+    public function testCanSetConfig(): void
     {
         vfsStream::setup('integration');
 
@@ -36,9 +39,9 @@ final class AbstractBundleTest extends TestCase
         $this->assertEquals($config, $bundle->getConfigurationHandler());
     }
 
-    public function testCanSetEventManger()
+    public function testCanSetEventManger(): void
     {
-        $em = new \hschulz\Event\Manager();
+        $em = new Manager();
 
         $bundle = $this->getMockForAbstractClass(AbstractBundle::class);
 

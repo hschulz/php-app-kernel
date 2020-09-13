@@ -1,14 +1,16 @@
 <?php
 
-namespace hschulz\Kernel\Tests\Unit\Bundle;
+declare(strict_types=1);
 
-use \hschulz\Kernel\Bundle\AbstractBundle;
-use \hschulz\Kernel\Bundle\RegisterBundleEvent;
-use \PHPUnit\Framework\TestCase;
+namespace Hschulz\Kernel\Tests\Unit\Bundle;
+
+use Hschulz\Kernel\Bundle\AbstractBundle;
+use Hschulz\Kernel\Bundle\RegisterBundleEvent;
+use PHPUnit\Framework\TestCase;
 
 final class RegisterBundleEventTest extends TestCase
 {
-    public function testCanSetTarget()
+    public function testCanSetTarget(): void
     {
         $stub = $this->getMockForAbstractClass(AbstractBundle::class);
 

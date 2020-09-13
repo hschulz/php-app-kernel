@@ -1,19 +1,26 @@
 <?php
 
-namespace hschulz\Kernel\Tests\Unit;
+declare(strict_types=1);
 
-use \hschulz\Kernel\Bundle\AbstractBundle;
-use \hschulz\Kernel\CliKernel;
-use \org\bovigo\vfs\vfsStream;
-use \PHPUnit\Framework\TestCase;
+namespace Hschulz\Kernel\Tests\Unit;
+
+use InvalidArgumentException;
+use stdClass;
+use Hschulz\Config\JSONConfigurationManager;
+use Hschulz\Event\EventManager;
+use Hschulz\Event\Manager;
+use Hschulz\Kernel\Bundle\AbstractBundle;
+use Hschulz\Kernel\CliKernel;
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 
 final class CliKernelTest extends TestCase
 {
-    protected $config = null;
+    protected ?JSONConfigurationManager $config = null;
 
-    protected $kernel = null;
+    protected ?CliKernel $kernel = null;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         vfsStream::setup('integration');
 
@@ -21,7 +28,7 @@ final class CliKernelTest extends TestCase
 
         file_put_contents($file, '{}');
 
-        $this->config = new \hschulz\Config\JSONConfigurationManager($file, 'integration');
+        $this->config = new JSONConfigurationManager($file);
 
         $this->config['Kernel']['timezone'] = 'Europe/Berlin';
         $this->config['Kernel']['display_errors'] = 'On';
@@ -31,12 +38,12 @@ final class CliKernelTest extends TestCase
         $this->kernel = new CliKernel($this->config);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->config = null;
     }
 
-    public function testCanRegisterBundle()
+    public function testCanRegisterBundle(): void
     {
         $bundle = $this->getMockForAbstractClass(AbstractBundle::class);
 
@@ -46,7 +53,7 @@ final class CliKernelTest extends TestCase
         $this->assertEquals($bundle, $this->kernel->getBundles()[0]);
     }
 
-    public function testCanRegisterBundles()
+    public function testCanRegisterBundles(): void
     {
         $this->kernel->registerBundles([
             $this->getMockForAbstractClass(AbstractBundle::class),
@@ -57,13 +64,13 @@ final class CliKernelTest extends TestCase
         $this->assertEquals(3, count($this->kernel->getBundles()));
     }
 
-    public function testCanNotRegisterAnyObjectAsBundle()
+    public function testCanNotRegisterAnyObjectAsBundle(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->kernel->registerBundles([new \stdClass()]);
+        $this->expectException(InvalidArgumentException::class);
+        $this->kernel->registerBundles([new stdClass()]);
     }
 
-    public function testCanSetDebug()
+    public function testCanSetDebug(): void
     {
         $this->assertTrue($this->kernel->isDebug());
 
@@ -72,53 +79,48 @@ final class CliKernelTest extends TestCase
         $this->assertFalse($this->kernel->isDebug());
     }
 
-    public function testHasConfig()
+    public function testHasConfig(): void
     {
         $this->assertEquals($this->config, $this->kernel->getConfigurationHandler());
     }
 
-    public function testHasEventManager()
+    public function testHasEventManager(): void
     {
-        $this->assertInstanceOf(\hschulz\Event\EventManager::class, $this->kernel->getEventManager());
+        $this->assertInstanceOf(EventManager::class, $this->kernel->getEventManager());
     }
 
-    public function testCanSetEventManager()
+    public function testCanSetEventManager(): void
     {
-        $em = new \hschulz\Event\Manager();
+        $em = new Manager();
 
         $this->kernel->setEventManager($em);
 
         $this->assertEquals($em, $this->kernel->getEventManager());
     }
 
-    public function testCanBoot()
+    public function testCanBoot(): void
     {
         $this->assertTrue($this->kernel->boot());
     }
 
-    public function testCanBootWithBundles()
+    public function testCanBootWithBundles(): void
     {
         $this->kernel->registerBundle($this->getMockForAbstractClass(AbstractBundle::class));
         $this->assertTrue($this->kernel->boot());
     }
 
-    public function testCanShutdown()
+    public function testCanShutdown(): void
     {
         $this->assertTrue($this->kernel->shutdown());
     }
 
-    public function testCanShutdownWithBundles()
+    public function testCanShutdownWithBundles(): void
     {
         $this->kernel->registerBundle($this->getMockForAbstractClass(AbstractBundle::class));
         $this->assertTrue($this->kernel->shutdown());
     }
 
-    public function testCanGetEnvironment()
-    {
-        $this->assertEquals('integration', $this->kernel->getEnvironment());
-    }
-
-    public function testCanGetStartTime()
+    public function testCanGetStartTime(): void
     {
         $this->assertLessThan(microtime(true), $this->kernel->getStartTime());
     }
