@@ -15,25 +15,25 @@ class KernelEvent extends AbstractEvent implements KernelAware
      * The identifier string for the kernel pre-boot event.
      * @var string
      */
-    const EVENT_PRE_BOOT = 'Hschulz.kernel.pre-boot';
+    public const EVENT_PRE_BOOT = 'Hschulz.kernel.pre-boot';
 
     /**
      * The identifier string for the kernel post-boot event.
      * @var string
      */
-    const EVENT_POST_BOOT = 'Hschulz.kernel.post-boot';
+    public const EVENT_POST_BOOT = 'Hschulz.kernel.post-boot';
 
     /**
      * The identifier string for the kernel pre-shutdown event.
      * @var string
      */
-    const EVENT_PRE_SHUTDOWN = 'Hschulz.kernel.pre-shutdown';
+    public const EVENT_PRE_SHUTDOWN = 'Hschulz.kernel.pre-shutdown';
 
     /**
      * The identifier string for the kernel post-shutdown event.
      * @var string
      */
-    const EVENT_POST_SHUTDOWN = 'Hschulz.kernel.post-shutdown';
+    public const EVENT_POST_SHUTDOWN = 'Hschulz.kernel.post-shutdown';
 
     /**
      * The kernel object.

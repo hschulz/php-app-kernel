@@ -12,7 +12,6 @@ use Hschulz\Kernel\Bundle\Bundle;
  */
 interface Kernel extends EventAware
 {
-
     /**
      * Implementing classes should put all logic here that is required
      * to fully enable the kernel instance.

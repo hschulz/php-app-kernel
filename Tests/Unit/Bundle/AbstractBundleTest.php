@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Hschulz\Kernel\Tests\Unit\Bundle;
 
+use function file_put_contents;
 use Hschulz\Config\JSONConfigurationManager;
 use Hschulz\Event\Manager;
 use Hschulz\Kernel\Bundle\AbstractBundle;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use function file_put_contents;
 
 final class AbstractBundleTest extends TestCase
 {

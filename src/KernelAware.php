@@ -9,7 +9,6 @@ namespace Hschulz\Kernel;
  */
 interface KernelAware
 {
-
     /**
      * Returns the kernel instance.
      *

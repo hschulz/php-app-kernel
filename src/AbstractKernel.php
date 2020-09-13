@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Hschulz\Kernel;
 
+use function count;
+use function date_default_timezone_set;
+use function error_reporting;
 use Hschulz\Config\Configurable;
 use Hschulz\Config\ConfigurationManager;
 use Hschulz\Event\EventManager;
 use Hschulz\Event\Manager;
 use Hschulz\Kernel\Bundle\Bundle;
 use Hschulz\Kernel\Bundle\RegisterBundleEvent;
-use InvalidArgumentException;
-use function count;
-use function date_default_timezone_set;
-use function error_reporting;
 use function ini_set;
+use InvalidArgumentException;
 use function microtime;
 
 /**
