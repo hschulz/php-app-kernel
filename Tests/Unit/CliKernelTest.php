@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Hschulz\Kernel\Tests\Unit;
 
-use InvalidArgumentException;
-use stdClass;
 use Hschulz\Config\JSONConfigurationManager;
 use Hschulz\Event\EventManager;
 use Hschulz\Event\Manager;
 use Hschulz\Kernel\Bundle\AbstractBundle;
 use Hschulz\Kernel\CliKernel;
+use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class CliKernelTest extends TestCase
 {
