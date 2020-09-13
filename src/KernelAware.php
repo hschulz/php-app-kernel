@@ -1,6 +1,8 @@
 <?php
 
-namespace hschulz\Kernel;
+declare(strict_types=1);
+
+namespace Hschulz\Kernel;
 
 /**
  *

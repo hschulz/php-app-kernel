@@ -1,19 +1,21 @@
 <?php
 
-namespace hschulz\Kernel;
+declare(strict_types=1);
 
-use \hschulz\Config\Configurable;
-use \hschulz\Config\ConfigurationManager;
-use \hschulz\Event\EventManager;
-use \hschulz\Event\Manager;
-use \hschulz\Kernel\Bundle\Bundle;
-use \hschulz\Kernel\Bundle\RegisterBundleEvent;
-use \InvalidArgumentException;
-use function \count;
-use function \date_default_timezone_set;
-use function \error_reporting;
-use function \ini_set;
-use function \microtime;
+namespace Hschulz\Kernel;
+
+use Hschulz\Config\Configurable;
+use Hschulz\Config\ConfigurationManager;
+use Hschulz\Event\EventManager;
+use Hschulz\Event\Manager;
+use Hschulz\Kernel\Bundle\Bundle;
+use Hschulz\Kernel\Bundle\RegisterBundleEvent;
+use InvalidArgumentException;
+use function count;
+use function date_default_timezone_set;
+use function error_reporting;
+use function ini_set;
+use function microtime;
 
 /**
  * Description of Kernel
@@ -24,55 +26,62 @@ abstract class AbstractKernel implements Configurable, Kernel
      * Identifier for a development environment.
      * @var string
      */
-    const ENV_DEVELOPMENT = 'development';
+    public const ENV_DEVELOPMENT = 'development';
 
     /**
      * Identifier for a production environment.
      * @var string
      */
-    const ENV_PRODUCTION = 'production';
+    public const ENV_PRODUCTION = 'production';
 
     /**
      * The currently selected environment.
+     *
      * @var string
      */
-    protected $environment = '';
+    protected string $environment = '';
 
     /**
      * Specifies if the kernel is currently running in debug mode.
+     *
      * @var bool
      */
-    protected $isDebug = false;
+    protected bool $isDebug = false;
 
     /**
      * Starting time of the kernel initialization.
+     *
      * @var float
      */
-    protected $startTime = 0.0;
+    protected float $startTime = 0.0;
 
     /**
      * Shows if the kernel has been booted or not.
+     *
      * @var string
      */
-    protected $isBooted = false;
+    protected bool $isBooted = false;
 
     /**
      * All registered bundles.
+     *
      * @var array
      */
-    protected $bundles = [];
+    protected array $bundles = [];
 
     /**
      * The event manger instance.
-     * @var EventManager
+     *
+     * @var EventManager|null
      */
-    protected $eventManager = null;
+    protected ?EventManager $eventManager = null;
 
     /**
      * The configuration manager instance.
-     * @var ConfigurationManager
+     *
+     * @var ConfigurationManager|null
      */
-    protected $config = null;
+    protected ?ConfigurationManager $config = null;
 
     /**
      * Creates a new kernel instance.
@@ -119,12 +128,12 @@ abstract class AbstractKernel implements Configurable, Kernel
 
         /* If possible assign the display_errors value from the config */
         if (isset($this->config['Kernel']['display_errors'])) {
-            ini_set('display_errors', $this->config['Kernel']['display_errors']);
+            ini_set('display_errors', (string) $this->config['Kernel']['display_errors']);
         }
 
         /* If possible assign the error reporting value from the config */
         if (isset($this->config['Kernel']['error_reporting'])) {
-            ini_set('error_reporting', $this->config['Kernel']['error_reporting']);
+            ini_set('error_reporting', (string) $this->config['Kernel']['error_reporting']);
             error_reporting($this->config['Kernel']['error_reporting']);
         }
 

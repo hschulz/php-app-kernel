@@ -1,33 +1,35 @@
 <?php
 
-namespace hschulz\Kernel\Bundle;
+declare(strict_types=1);
 
-use \hschulz\Config\ConfigurationManager;
-use \hschulz\Event\EventManager;
+namespace Hschulz\Kernel\Bundle;
+
+use Hschulz\Config\ConfigurationManager;
+use Hschulz\Event\EventManager;
 
 /**
  *
  */
 abstract class AbstractBundle implements Bundle
 {
-
     /**
      * The configuration manager.
-     * @var ConfigurationManager
+     *
+     * @var ConfigurationManager|null
      */
-    protected $config = null;
+    protected ?ConfigurationManager $config = null;
 
     /**
      * The event manager.
-     * @var EventManager
+     * @var EventManager|null
      */
-    protected $eventManager = null;
+    protected ?EventManager $eventManager = null;
 
     /**
      * The bundle name.
      * @var string
      */
-    protected $name = '';
+    protected string $name = '';
 
     /**
      * Creates a new bundle without an event manager or config.

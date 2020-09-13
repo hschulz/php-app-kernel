@@ -1,8 +1,10 @@
 <?php
 
-namespace hschulz\Kernel\Bundle;
+declare(strict_types=1);
 
-use \hschulz\Event\AbstractEvent;
+namespace Hschulz\Kernel\Bundle;
+
+use Hschulz\Event\AbstractEvent;
 
 /**
  *
@@ -13,19 +15,19 @@ class RegisterBundleEvent extends AbstractEvent
      * Identifier for the bundle pre-register event.
      * @var string
      */
-    const EVENT_PRE_REGISTER = 'hschulz.kernel.bundle.pre-register';
+    public const EVENT_PRE_REGISTER = 'Hschulz.kernel.bundle.pre-register';
 
     /**
      * Identifier for the bundle post-register event.
      * @var string
      */
-    const EVENT_POST_REGISTER = 'hschulz.kernel.bundle.post-register';
+    public const EVENT_POST_REGISTER = 'Hschulz.kernel.bundle.post-register';
 
     /**
      * The bundle object that is the cause of the event.
-     * @var Bundle
+     * @var Bundle|null
      */
-    protected $bundle = null;
+    protected ?Bundle $bundle = null;
 
     /**
      * Creates a new event object with the corresponding bundle instance.

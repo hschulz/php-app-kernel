@@ -1,16 +1,17 @@
 <?php
 
-namespace hschulz\Kernel\Bundle;
+declare(strict_types=1);
 
-use \hschulz\Config\Configurable;
-use \hschulz\Event\EventAware;
+namespace Hschulz\Kernel\Bundle;
+
+use Hschulz\Config\Configurable;
+use Hschulz\Event\EventAware;
 
 /**
  *
  */
 interface Bundle extends EventAware, Configurable
 {
-
     /**
      * Implementing classes should put all logic in this method that is required
      * to have a fully functional bundle instance.

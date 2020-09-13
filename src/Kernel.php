@@ -1,9 +1,11 @@
 <?php
 
-namespace hschulz\kernel;
+declare(strict_types=1);
 
-use \hschulz\Event\EventAware;
-use \hschulz\Kernel\Bundle\Bundle;
+namespace Hschulz\kernel;
+
+use Hschulz\Event\EventAware;
+use Hschulz\Kernel\Bundle\Bundle;
 
 /**
  *

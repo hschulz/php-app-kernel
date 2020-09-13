@@ -1,8 +1,10 @@
 <?php
 
-namespace hschulz\Kernel;
+declare(strict_types=1);
 
-use \hschulz\Event\AbstractEvent;
+namespace Hschulz\Kernel;
+
+use Hschulz\Event\AbstractEvent;
 
 /**
  *
@@ -13,25 +15,25 @@ class KernelEvent extends AbstractEvent implements KernelAware
      * The identifier string for the kernel pre-boot event.
      * @var string
      */
-    const EVENT_PRE_BOOT = 'hschulz.kernel.pre-boot';
+    const EVENT_PRE_BOOT = 'Hschulz.kernel.pre-boot';
 
     /**
      * The identifier string for the kernel post-boot event.
      * @var string
      */
-    const EVENT_POST_BOOT = 'hschulz.kernel.post-boot';
+    const EVENT_POST_BOOT = 'Hschulz.kernel.post-boot';
 
     /**
      * The identifier string for the kernel pre-shutdown event.
      * @var string
      */
-    const EVENT_PRE_SHUTDOWN = 'hschulz.kernel.pre-shutdown';
+    const EVENT_PRE_SHUTDOWN = 'Hschulz.kernel.pre-shutdown';
 
     /**
      * The identifier string for the kernel post-shutdown event.
      * @var string
      */
-    const EVENT_POST_SHUTDOWN = 'hschulz.kernel.post-shutdown';
+    const EVENT_POST_SHUTDOWN = 'Hschulz.kernel.post-shutdown';
 
     /**
      * The kernel object.
